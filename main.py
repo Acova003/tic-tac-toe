@@ -1,12 +1,13 @@
+import time
 board = {
     '1': ' ' , '2': ' ' , '3': ' ' ,
     '4': ' ' , '5': ' ' , '6': ' ' ,
     '7': ' ' , '8': ' ' , '9': ' '
 }
 count = 0
-win0 = [7,4]
-win1 = [9,5]
-win2 = [3,2]
+win0 = ["1","4","7"]
+win1 = ["1","5","9"]
+win2 = ["1","2","3"]
 
 def draw_board():
     print("\n")
@@ -78,5 +79,6 @@ def computer():
 def play():
     print("Welcome to tic tac toe!")
     draw_board()
+    time.sleep(1)
     computer()
 play()
