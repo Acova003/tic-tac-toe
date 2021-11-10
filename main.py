@@ -1,4 +1,5 @@
 import time
+import sys
 board = {
     '1': ' ' , '2': ' ' , '3': ' ' ,
     '4': ' ' , '5': ' ' , '6': ' ' ,
@@ -8,6 +9,8 @@ count = 0
 win0 = ["1","4","7"]
 win1 = ["1","5","9"]
 win2 = ["1","2","3"]
+#computer always starts in the first space
+computer_moves = ["1"]
 
 def draw_board():
     print("\n")
@@ -40,6 +43,16 @@ def make_move(m):
     else:
         board[m] = "X"
 
+def is_winner():
+    return ((computer_moves == win0) or
+            (computer_moves == win1) or
+            (computer_moves == win2) or
+            (computer_moves == win2))
+
+def is_full():
+    global count
+    return count == 9
+
 def player_2():
     print("Player 2's move")
     print("Choose a number between 1-9")
@@ -65,10 +78,19 @@ def computer():
         move = input()
     if is_valid(int(move)) == True and is_available(move) == True:
         count += 1
+        computer_moves.append(move)
         make_move(move)
         draw_board()
-        print(board)
-        player_2()
+        # check for winner or cat game
+        if is_winner() == True:
+            print("Computer wins!")
+            sys.exit()
+        elif is_full() == True:
+            print('Cat game! It\'s a tie')
+            sys.exit()
+        else:
+            print(board)
+            player_2()
     else:
         error_message(move)
         draw_board()
