@@ -6,9 +6,11 @@ board = {
     '7': ' ' , '8': ' ' , '9': ' '
 }
 count = 0
+#possible winning combinations by computer (always starts at the first position)
 win0 = ["1","4","7"]
 win1 = ["1","5","9"]
 win2 = ["1","2","3"]
+#store computer moves to compare with winning combinations
 computer_moves = []
 
 def draw_board():
@@ -21,12 +23,15 @@ def draw_board():
     print("\n")
 
 def is_valid(m):
+    #checks if user input is between 1 and 9
     return m in range (1,10)
 
 def is_available(m):
+    #checks if space is empty
     return board[m] == ' '
 
 def error_message(m):
+    #Let's the user know why their move isn't valid
     if is_valid(int(m)) == False:
         print("\n")
         print("ERROR: Input has to be a valid number")
@@ -35,6 +40,7 @@ def error_message(m):
         print("ERROR: Space already taken")
 
 def make_move(m):
+    #reassigns new value on the board according to which player moved
     global board
     global count
     if count % 2 == 0:
@@ -43,12 +49,15 @@ def make_move(m):
         board[m] = "X"
 
 def is_winner():
+    # returns bool true if the computer's moves matches a
+    #winning combination, determining the winner
     return ((computer_moves == win0) or
             (computer_moves == win1) or
             (computer_moves == win2) or
             (computer_moves == win2))
 
 def is_full():
+    #utlizes the counting variable to see if there has been 9 moves i.e. full board
     global count
     return count == 9
 
