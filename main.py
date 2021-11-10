@@ -1,0 +1,82 @@
+board = {
+    '1': ' ' , '2': ' ' , '3': ' ' ,
+    '4': ' ' , '5': ' ' , '6': ' ' ,
+    '7': ' ' , '8': ' ' , '9': ' '
+}
+count = 0
+win0 = [7,4]
+win1 = [9,5]
+win2 = [3,2]
+
+def draw_board():
+    print("\n")
+    print(f"{board['1']} | {board['2']} | {board['3']} ")
+    print("---------")
+    print(f"{board['4']} | {board['5']} | {board['6']} ")
+    print("---------")
+    print(f"{board['7']} | {board['8']} | {board['9']} ")
+    print("\n")
+
+def is_valid(m):
+    return m in range (1,10)
+
+def is_available(m):
+    return board[m] == ' '
+
+def error_message(m):
+    if is_valid(int(m)) == False:
+        print("\n")
+        print("ERROR: Input has to be a valid number")
+    elif is_available(m) == False:
+        print("\n")
+        print("ERROR: Space already taken")
+
+def make_move(m):
+    global board
+    global count
+    if count % 2 == 0:
+        board[m] = "O"
+    else:
+        board[m] = "X"
+
+def player_2():
+    print("Player 2's move")
+    print("Choose a number between 1-9")
+    move = input()
+    if is_valid(int(move)) == True and is_available(move) == True:
+        global count
+        count += 1
+        make_move(move)
+        draw_board()
+        computer()
+    else:
+        error_message(move)
+        draw_board()
+        player_2()
+
+def computer():
+    global count
+    print("Computer's move")
+    if count == 0:
+        move = "1"
+    else:
+        print("Choose a number between 1-9")
+        move = input()
+    if is_valid(int(move)) == True and is_available(move) == True:
+        count += 1
+        make_move(move)
+        draw_board()
+        print(board)
+        player_2()
+    else:
+        error_message(move)
+        draw_board()
+        computer()
+
+    draw_board()
+
+def play():
+    print("Welcome to tic tac toe!")
+    draw_board()
+    computer()
+play()
