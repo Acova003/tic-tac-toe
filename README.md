@@ -1,9 +1,9 @@
 # tic-tac-toe
 
-### _Requirements_
-Python3
+### Requirements
+##### Python3
 
-## _How to run program_
+### How to run program
 
-Navigate to root directory
-Run <python3 main.py> in the terminal
+##### Navigate to root directory
+##### Run _python3 main.py_ in the terminal
