@@ -9,8 +9,7 @@ count = 0
 win0 = ["1","4","7"]
 win1 = ["1","5","9"]
 win2 = ["1","2","3"]
-#computer always starts in the first space
-computer_moves = ["1"]
+computer_moves = []
 
 def draw_board():
     print("\n")
@@ -78,6 +77,7 @@ def computer():
         move = input()
     if is_valid(int(move)) == True and is_available(move) == True:
         count += 1
+        global computer_moves
         computer_moves.append(move)
         make_move(move)
         draw_board()
